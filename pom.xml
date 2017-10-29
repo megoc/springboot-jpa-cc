@@ -6,7 +6,7 @@
 	<groupId>com.flymegoc.cc</groupId>
 	<artifactId>springboot-jpa-cc</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>springboot-jpa-cc</name>
 	<description>Demo project for Spring Boot Jpa</description>
@@ -87,6 +87,12 @@
 			<groupId>org.jsoup</groupId>
 			<artifactId>jsoup</artifactId>
 			<version>1.10.3</version>
+		</dependency>
+		<!--打包成war包,排除相关的包-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 
