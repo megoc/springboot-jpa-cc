@@ -8,6 +8,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Component("newsService")
 @Transactional
 public class NewsServiceImpl implements NewsService{
@@ -31,5 +33,10 @@ public class NewsServiceImpl implements NewsService{
     @Override
     public News findById(Long newsId) {
         return newsRepository.findOne(newsId);
+    }
+
+    @Override
+    public List<News> findTop6ByFigureImgUrlNotNullOrderByIdDesc() {
+        return newsRepository.findTop6ByFigureImgUrlNotNullOrderByIdDesc();
     }
 }

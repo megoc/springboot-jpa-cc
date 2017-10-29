@@ -45,6 +45,11 @@ public class NewsController {
         return ResultUtils.getSuccBaseResult(newsService.findNews(pageRequest).getContent());
     }
 
+    @RequestMapping("/getTopFigureNews")
+    public BaseResult getTopFigureNews(){
+        return ResultUtils.getSuccBaseResult(newsService.findTop6ByFigureImgUrlNotNullOrderByIdDesc());
+    }
+
     @RequestMapping("/getNewsContent")
     public BaseResult getNewsContent(@RequestParam("newsId") long newsId) throws UnsupportedEncodingException {
         News news=newsService.findById(newsId);

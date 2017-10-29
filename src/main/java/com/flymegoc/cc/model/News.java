@@ -34,6 +34,8 @@ public class News {
     @Column(columnDefinition="TEXT")
     private String content;//正文
 
+    private String figureImgUrl;//顶部大图轮询
+
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh" , timezone="GMT+8")
     @Column(nullable = false,updatable = false)
     private Date newCreateTime;
@@ -45,7 +47,7 @@ public class News {
     public News() {
     }
 
-    public News(long id, String title, String contentUrl, String summary, String imgUrl, long conmentCount, long viewCount, String content, Date newCreateTime, Date newUpdateTime) {
+    public News(long id, String title, String contentUrl, String summary, String imgUrl, long conmentCount, long viewCount, String content, String figureImgUrl, Date newCreateTime, Date newUpdateTime) {
         this.id = id;
         this.title = title;
         this.contentUrl = contentUrl;
@@ -54,6 +56,7 @@ public class News {
         this.conmentCount = conmentCount;
         this.viewCount = viewCount;
         this.content = content;
+        this.figureImgUrl = figureImgUrl;
         this.newCreateTime = newCreateTime;
         this.newUpdateTime = newUpdateTime;
     }
@@ -122,6 +125,14 @@ public class News {
         this.content = content;
     }
 
+    public String getFigureImgUrl() {
+        return figureImgUrl;
+    }
+
+    public void setFigureImgUrl(String figureImgUrl) {
+        this.figureImgUrl = figureImgUrl;
+    }
+
     public Date getNewCreateTime() {
         return newCreateTime;
     }
@@ -149,6 +160,7 @@ public class News {
                 ", conmentCount=" + conmentCount +
                 ", viewCount=" + viewCount +
                 ", content='" + content + '\'' +
+                ", figureImgUrl='" + figureImgUrl + '\'' +
                 ", newCreateTime=" + newCreateTime +
                 ", newUpdateTime=" + newUpdateTime +
                 '}';
