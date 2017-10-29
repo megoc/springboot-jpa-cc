@@ -31,6 +31,7 @@ public class News {
     @Column(nullable = false)//阅读数
     private long viewCount;
 
+    @Column(columnDefinition="TEXT")
     private String content;//正文
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh" , timezone="GMT+8")

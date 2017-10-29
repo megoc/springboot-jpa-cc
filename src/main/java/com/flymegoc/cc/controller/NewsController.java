@@ -1,16 +1,26 @@
 package com.flymegoc.cc.controller;
 
+import com.flymegoc.cc.model.News;
 import com.flymegoc.cc.service.NewsService;
 import com.flymegoc.cc.utils.BaseResult;
+import com.flymegoc.cc.utils.CnbateUtils;
 import com.flymegoc.cc.utils.ResultUtils;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.util.Base64Utils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.awt.print.Pageable;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.util.Base64;
 
 @RestController
 public class NewsController {
@@ -35,4 +45,20 @@ public class NewsController {
         return ResultUtils.getSuccBaseResult(newsService.findNews(pageRequest).getContent());
     }
 
+    @RequestMapping("/getNewsContent")
+    public BaseResult getNewsContent(@RequestParam("newsId") long newsId) throws UnsupportedEncodingException {
+        News news=newsService.findById(newsId);
+        String content="";
+        if (news.getContent()==null||news.getContent().equals("")){
+            content=CnbateUtils.getNewsContent(news.getContentUrl());
+            news.setContent(content);
+            newsService.save(news);
+            System.out.println("解析网页");
+        }else {
+            content= news.getContent();
+            System.out.println("获取缓存");
+        }
+
+        return ResultUtils.getSuccBaseResult(content);
+    }
 }

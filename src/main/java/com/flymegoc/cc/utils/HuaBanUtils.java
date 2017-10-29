@@ -67,14 +67,14 @@ public class HuaBanUtils {
                             picture.setId(fileBean.getId());
                             picture.setPictureBucket(fileBean.getBucket());
                             picture.setPictureKey(fileBean.getKey());
-                            if(!fileBean.getType().equals("image/jpeg")&&!fileBean.getType().equals("image/png")){
+                            double ratio=(double) fileBean.getWidth()/fileBean.getHeight();
+                            picture.setPictureRatio(Double.valueOf(decimalFormat.format(ratio)));
+                            if((!fileBean.getType().equals("image/jpeg")&&!fileBean.getType().equals("image/png"))||ratio<0.25){
                                 continue;
                             }
                             picture.setPictureType(fileBean.getType());
                             picture.setPictureWidth(fileBean.getWidth());
                             picture.setPictureHeight(fileBean.getHeight());
-                            double ratio=(double) fileBean.getWidth()/fileBean.getHeight();
-                            picture.setPictureRatio(Double.valueOf(decimalFormat.format(ratio)));
                             //picture.setSprPictureReads(0);
                             picture.setPictureLikes(0);
                             picture.setCategory(category);
@@ -134,14 +134,14 @@ public class HuaBanUtils {
                             picture.setId(fileBean.getId());
                             picture.setPictureBucket(fileBean.getBucket());
                             picture.setPictureKey(fileBean.getKey());
-                            if(!fileBean.getType().equals("image/jpeg")&&!fileBean.getType().equals("image/png")){
+                            double ratio=(double)fileBean.getWidth()/fileBean.getHeight();
+                            picture.setPictureRatio(Double.valueOf(decimalFormat.format(ratio)));
+                            if((!fileBean.getType().equals("image/jpeg")&&!fileBean.getType().equals("image/png"))||ratio<0.25){
                                 continue;
                             }
                             picture.setPictureType(fileBean.getType());
                             picture.setPictureWidth(fileBean.getWidth());
                             picture.setPictureHeight(fileBean.getHeight());
-                            double ratio=(double)fileBean.getWidth()/fileBean.getHeight();
-                            picture.setPictureRatio(Double.valueOf(decimalFormat.format(ratio)));
                             //picture.setSprPictureReads(0);
                             picture.setPictureLikes(0);
                             picture.setCategory(category);
@@ -194,14 +194,15 @@ public class HuaBanUtils {
                             picture.setId(fileBean.getId());
                             picture.setPictureBucket(fileBean.getBucket());
                             picture.setPictureKey(fileBean.getKey());
-                            if(!fileBean.getType().equals("image/jpeg")&&!fileBean.getType().equals("image/png")){
+                            double ratio=(double)fileBean.getWidth()/fileBean.getHeight();
+                            picture.setPictureRatio(Double.valueOf(decimalFormat.format(ratio)));
+                            if((!fileBean.getType().equals("image/jpeg")&&!fileBean.getType().equals("image/png"))||ratio<0.25){
                                 continue;
                             }
                             picture.setPictureType(fileBean.getType());
                             picture.setPictureWidth(fileBean.getWidth());
                             picture.setPictureHeight(fileBean.getHeight());
-                            double ratio=(double)fileBean.getWidth()/fileBean.getHeight();
-                            picture.setPictureRatio(Double.valueOf(decimalFormat.format(ratio)));
+
                             //picture.setSprPictureReads(0);
                             picture.setPictureLikes(0);
                             picture.setCategory(category);

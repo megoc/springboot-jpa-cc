@@ -7,4 +7,5 @@ import org.springframework.data.domain.Pageable;
 public interface NewsService {
     public News save(News news);
     Page<News> findNews(Pageable pageable);
+    public News findById(Long newsId);
 }

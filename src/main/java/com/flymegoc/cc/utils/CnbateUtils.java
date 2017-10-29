@@ -39,7 +39,10 @@ public class CnbateUtils {
                     int endIndex=url.lastIndexOf(".");
                     long id= Long.parseLong(url.substring(startIndex+1,endIndex));
                     System.out.println("id:"+id);
-
+                    News oldNews=newsService.findById(id);
+                    if (oldNews!=null){
+                        continue;
+                    }
                     System.out.println("\n");
 
                     News news=new News();
@@ -60,5 +63,29 @@ public class CnbateUtils {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * 获取新闻正文
+     * @param url 正文链接
+     * @return 正文
+     */
+    public static String getNewsContent(String url){
+        String content="";
+        Element el = null;
+        Element summary =null;
+        try {
+            Document doc = Jsoup.connect(url).get();
+            summary = doc.getElementsByClass("article-summary").first();
+            el = doc.getElementById("artibody");
+//                Elements imgs = el.select("img");
+//                for (Element element:imgs){
+//                    element.attr("width","100%");
+//                }
+            content=summary.toString()+el.toString();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return content;
     }
 }

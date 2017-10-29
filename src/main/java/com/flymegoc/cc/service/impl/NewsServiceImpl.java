@@ -27,4 +27,9 @@ public class NewsServiceImpl implements NewsService{
     public Page<News> findNews(Pageable pageable) {
         return newsRepository.findAll(pageable);
     }
+
+    @Override
+    public News findById(Long newsId) {
+        return newsRepository.findOne(newsId);
+    }
 }

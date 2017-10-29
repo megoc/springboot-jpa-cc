@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>新闻</title>
+    <link href="http://www.cnbeta.com/css/style.css?v=201710" rel="stylesheet">
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <div v-html="rawHtml"></div>
+</div>
+<script>
+    var app = new Vue({
+        el: '#app',
+        mounted: function () {
+            this.$nextTick(function () {
+                // 代码保证 this.$el 在 document 中
+                axios.defaults.baseURL = 'http://192.168.1.161:8080/';
+                this.loadNewsContent(HostApp.getNewsId());
+            })
+        },
+        data: {
+            rawHtml:""
+        },
+        methods: {
+            loadNewsContent: function (id) {
+                var _this = this;
+                axios.get('/getNewsContent', {
+                    params: {
+                        newsId: id
+                    }
+                })
+                    .then(function (response) {
+                        _this.rawHtml=response.data.data;
+                    })
+                    .catch(function (error) {
+                        console.log("错误" + error);
+                    });
+            }
+        }
+    })
+</script>
+</body>
+</html>
