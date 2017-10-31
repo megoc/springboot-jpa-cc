@@ -39,4 +39,12 @@ public class NewsServiceImpl implements NewsService{
     public List<News> findTop6ByFigureImgUrlNotNullOrderByIdDesc() {
         return newsRepository.findTop6ByFigureImgUrlNotNullOrderByIdDesc();
     }
+
+    @Override
+    public void addNewsReadCounts(Long newsId) {
+        News news=newsRepository.findOne(newsId);
+        if (news!=null){
+            news.setViewCount(news.getViewCount()+1);
+        }
+    }
 }

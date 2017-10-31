@@ -63,7 +63,7 @@ public class NewsController {
             content= news.getContent();
             System.out.println("获取缓存");
         }
-
+        newsService.addNewsReadCounts(newsId);
         return ResultUtils.getSuccBaseResult(content);
     }
 }
