@@ -20,5 +20,5 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
-  profiles:
-    active: stg
+server:
+  port: 8080

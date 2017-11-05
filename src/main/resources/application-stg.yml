@@ -19,6 +19,6 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
-    show-sql: true
-  profiles:
-    active: stg
+    show-sql: false
+server:
+  port: 80
